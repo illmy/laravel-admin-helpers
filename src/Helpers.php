@@ -15,7 +15,7 @@ class Helpers extends Extension
      */
     public static function boot()
     {
-        if (env('APP_ENV') != 'debug') {
+        if (env('APP_ENV') != 'dev') {
             return;
         }
         static::registerRoutes();
