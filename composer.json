@@ -1,14 +1,14 @@
 {
-    "name": "laravel-admin-ext/helpers",
+    "name": "illmy/laravel-admin-helpers",
     "description": "Helpers extension for laravel-admin",
     "type": "library",
     "keywords": ["laravel-admin", "helpers"],
-    "homepage": "https://github.com/laravel-admin-extensions/helpers",
+    "homepage": "https://github.com/illmy/laravel-admin-helpers",
     "license": "MIT",
     "authors": [
         {
-            "name": "z-song",
-            "email": "zosong@126.com"
+            "name": "illmy",
+            "email": "illmyvm@gmail.com"
         }
     ],
     "require": {

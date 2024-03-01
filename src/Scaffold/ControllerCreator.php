@@ -184,8 +184,13 @@ class ControllerCreator
         if (empty($fields)) {
             throw new \Exception('Table fields can\'t be empty');
         }
+        
         foreach ($fields as $field) {
-            $rows[] = "\$grid->{$field['name']}('{$field['name']}');\n";
+            $label = $field['name'];
+            if (!empty($field['translation'])) {
+                $label = $field['translation'];
+            }
+            $rows[] = "\$grid->column('{$field['name']}', '{$label}');\n";
         }
 
         $this->DummyGridField = trim(implode(str_repeat(' ', 8), $rows), "\n");
