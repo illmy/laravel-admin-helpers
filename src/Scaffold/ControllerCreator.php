@@ -4,6 +4,8 @@ namespace Encore\Admin\Helpers\Scaffold;
 
 class ControllerCreator
 {
+    public const FORM_SELECT_FILED = ['type', 'status'];
+
     /**
      * Controller full name.
      *
@@ -149,7 +151,15 @@ class ControllerCreator
         }
 
         foreach ($fields as $field) {
-            $rows[] = "\$form->text('{$field['name']}', '{$field['name']}');\n";
+            $label = $field['name'];
+            if (!empty($field['translation'])) {
+                $label = $field['translation'];
+            }
+            if (in_array($field['name'], self::FORM_SELECT_FILED)) {
+                $rows[] = "\$form->select('{$field['name']}', '{$label}')->options(['0' => 'all']);\n";
+            } else {
+                $rows[] = "\$form->text('{$field['name']}', '{$label}');\n";
+            }
         }
 
         $this->DummyFormField = trim(implode(str_repeat(' ', 8), $rows), "\n");
@@ -190,7 +200,11 @@ class ControllerCreator
             if (!empty($field['translation'])) {
                 $label = $field['translation'];
             }
-            $rows[] = "\$grid->column('{$field['name']}', '{$label}');\n";
+            if (in_array($field['name'], self::FORM_SELECT_FILED)) {
+                $rows[] = "\$grid->column('{$field['name']}', '{$label}')->using(['0' => 'all']);\n";
+            } else {
+                $rows[] = "\$grid->column('{$field['name']}', '{$label}');\n";
+            }
         }
 
         $this->DummyGridField = trim(implode(str_repeat(' ', 8), $rows), "\n");
