@@ -168,4 +168,5 @@ class RouteController extends Controller
             return $middleware instanceof \Closure ? 'Closure' : $middleware;
         });
     }
+    
 }
