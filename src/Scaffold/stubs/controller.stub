@@ -67,7 +67,7 @@ class DummyClass extends Controller
     public function create(Content $content)
     {
         return $content
-            ->header(trans('admin.create'))
+            ->header('创建')
             ->description(trans('admin.description'))
             ->body($this->form());
     }
@@ -85,7 +85,11 @@ class DummyClass extends Controller
         DummyGridField
         $grid->created_at(trans('admin.created_at'));
         $grid->updated_at(trans('admin.updated_at'));
+        $grid->disableExport();
 
+        $grid->filter(function (Grid\Filter $filter) {
+            
+        });
         return $grid;
     }
 
